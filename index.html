@@ -47,6 +47,25 @@
             border-radius: 5px;
             cursor: pointer;
         }
+        .cta-button:active {
+            animation: buyEffect 0.6s ease;
+        }
+        @keyframes buyEffect {
+            0% { transform: scale(1); background-color: #00cc00; }
+            50% { transform: scale(1.2); background-color: #bfff00; }
+            100% { transform: scale(1); background-color: #00cc00; }
+        }
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: gold;
+            animation: confetti-fall 2s linear infinite;
+        }
+        @keyframes confetti-fall {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
         footer {
             background-color: rgba(0, 34, 0, 0.8);
             padding: 1rem;
@@ -109,7 +128,7 @@
     <section class="section">
         <h2>Join the Movement</h2>
         <p>Be part of the next big thing in crypto! Follow us on social media, join our community, and get your hands on $ODC today.</p>
-        <button class="cta-button">Buy $ODC Now</button>
+        <button class="cta-button" onclick="buyEffect()">Buy $ODC Now</button>
         <div class="social-links">
             <a href="https://x.com/One_Dollar_Coin" target="_blank">Follow us on X</a>
         </div>
@@ -118,5 +137,23 @@
     <footer>
         &copy; 2025 One Dollar Coin. All rights reserved.
     </footer>
+
+    <script>
+        function buyEffect() {
+            // Add confetti effect
+            for (let i = 0; i < 30; i++) {
+                let confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                confetti.style.animationDuration = (1 + Math.random() * 2) + 's';
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 3000);
+            }
+            // Play sound
+            let audio = new Audio('https://www.soundjay.com/buttons/sounds/button-29.mp3');
+            audio.play();
+        }
+    </script>
 </body>
 </html>
